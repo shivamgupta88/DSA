@@ -1,0 +1,61 @@
+
+#include <iostream>
+#include <stack>
+
+using namespace std;
+void insertStack(stack<int> &st, int val)
+{
+    if (st.size()==0)
+    {
+        st.push(val);
+        return;
+    }
+    int temp = st.top();
+    st.pop();
+    insertStack(st,val);
+    st.push(temp);
+}
+
+void reverse(stack<int> &st)
+{
+    if (st.size()==0)
+        return;
+    
+    int val = st.top();
+    st.pop();
+    
+    reverse(st);
+    
+    insertStack(st, val);
+}
+
+
+int main ()
+{
+    stack<int> v;
+    v.push(1);
+    v.push(2);
+    v.push(3);
+    v.push(4);
+    v.push(5);
+    
+    reverse(v);
+   while(v.size()!=0)
+    {
+        cout<<v.top()<<endl;
+        v.pop();
+    }
+    
+}
+
+
+
+
+
+Output .........
+
+1
+2
+3
+4
+5
